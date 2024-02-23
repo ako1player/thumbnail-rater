@@ -9,6 +9,7 @@ export function Header(){
         <div className="border-b">
             <div className="h-16 container flex justify-between items-center">
                 <div>Thumbnail Rater</div>
+                
                 <div>
                     <SignedIn>
                         <Link href="/create">Create Test</Link>

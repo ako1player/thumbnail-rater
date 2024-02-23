@@ -14,6 +14,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as files from "../files.js";
 import type * as thumbnail from "../thumbnail.js";
 
 /**
@@ -25,6 +26,7 @@ import type * as thumbnail from "../thumbnail.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  files: typeof files;
   thumbnail: typeof thumbnail;
 }>;
 export declare const api: FilterApi<
