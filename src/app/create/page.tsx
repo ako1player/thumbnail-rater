@@ -12,6 +12,7 @@ import { useToast } from "../../components/ui/use-toast";
 import clsx from "clsx";
 import { divide, isEmpty } from 'lodash'
 import { useRouter } from "next/navigation";
+import { getImageUrl } from "@/lib/utils";
 
 const defaultErrorState = {
   title:"",
@@ -110,7 +111,7 @@ function CreatePage() {
             <h2 className="text-2xl font-bold">Test Image A</h2>
             {imageA && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_CONVEX_URL}/api/storage/${imageA}`}
+                src={getImageUrl(imageA)}
                 width="200"
                 height="200"
                 alt="Image Test A"
@@ -139,7 +140,7 @@ function CreatePage() {
             <h2 className="text-2xl font-bold">Test Image B</h2>
             {imageA && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_CONVEX_URL}/api/storage/${imageB}`}
+                src={getImageUrl(imageB)}
                 width="200"
                 height="200"
                 alt="Image Test A"
