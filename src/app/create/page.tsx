@@ -13,6 +13,7 @@ import clsx from "clsx";
 import { divide, isEmpty } from 'lodash'
 import { useRouter } from "next/navigation";
 import { getImageUrl } from "@/lib/utils";
+import { useSession } from "@clerk/nextjs";
 
 const defaultErrorState = {
   title:"",
@@ -28,6 +29,7 @@ function CreatePage() {
   const [errors, setErrors] = useState(defaultErrorState);
   const { toast } = useToast()
   const router = useRouter();
+  const session = useSession();
 
   return (
     <div className="mt-16">
@@ -83,6 +85,7 @@ function CreatePage() {
             aImage: imageA,
             bImage: imageB,
             title,
+            profileImage: session.session?.user.imageUrl
           });
           console.log(thumbnailId)
           router.push(`/thumbnails/${thumbnailId}`)
