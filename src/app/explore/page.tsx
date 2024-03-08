@@ -51,9 +51,10 @@ export default function ExplorePage(){
                                 <AvatarImage src={thumbnail.profileImage} />
                                 <AvatarFallback>CN</AvatarFallback>
                             </Avatar>
-                            <p>{thumbnail.title}</p>
+                            <p>{thumbnail.name}</p>
+                            <p>{formatDistance(thumbnail._creationTime, new Date(), { addSuffix: true })}</p>
                         </div>
-                        <p>{formatDistance(thumbnail._creationTime, new Date(), { addSuffix: true })}</p>
+                        <p>{thumbnail.title}</p>
                         <p>Votes: {thumbnail.aVotes + thumbnail.bVotes}</p>
                     </CardContent>
                     <CardFooter>

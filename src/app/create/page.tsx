@@ -14,6 +14,7 @@ import { divide, isEmpty } from 'lodash'
 import { useRouter } from "next/navigation";
 import { getImageUrl } from "@/lib/utils";
 import { useSession } from "@clerk/nextjs";
+import { UpgradeButton } from "@/components/ui/upgrade-button";
 
 const defaultErrorState = {
   title:"",
@@ -81,14 +82,22 @@ function CreatePage() {
             return;
           }
           
-          const thumbnailId = await createThumbnail({
-            aImage: imageA,
-            bImage: imageB,
-            title,
-            profileImage: session.session?.user.imageUrl
-          });
-          console.log(thumbnailId)
-          router.push(`/thumbnails/${thumbnailId}`)
+          try{
+            const thumbnailId = await createThumbnail({
+              aImage: imageA,
+              bImage: imageB,
+              title,
+              profileImage: session.session?.user.imageUrl
+            });
+
+            router.push(`/thumbnails/${thumbnailId}`)
+          } catch (err){
+            toast({
+              title: "You ran out of free credits",
+              description: <div>You must <UpgradeButton /> to create for thumbnail tests</div>,
+              variant: "destructive"
+            })
+          }
         }}
       >
         <div className="flex flex-col gap-4 mb-8">
@@ -146,7 +155,7 @@ function CreatePage() {
                 src={getImageUrl(imageB)}
                 width="200"
                 height="200"
-                alt="Image Test A"
+                alt="Image Test B"
               />
             )}
 
